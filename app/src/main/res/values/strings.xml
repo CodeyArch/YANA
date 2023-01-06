@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">YANA</string>
+    <string name="title">Title</string>
+    <string name="date">Date</string>
+    <string name="colour">Colour</string>
+    <string name="ascending">Ascending</string>
+    <string name="descending">Descending</string>
+    <string name="delete_note">Delete Note</string>
+    <string name="add_note">Add Note</string>
+    <string name="sort">Sort</string>
+    <string name="save_note">Save Note</string>
+    <string name="collapse_note">Collapse note</string>
+    <string name="exit_without_saving">Exit without saving</string>
+    <string name="exit_without_save_confirm">Are you sure you would like to exit without saving?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="theme">Theme</string>
+    <string name="theme_setting_description">Changes default colours of visible elements</string>
+    <string name="time">Time</string>
+    <string name="fonts">Fonts</string>
+    <string name="restore_note">Restore note</string>
+</resources>
