@@ -24,7 +24,6 @@ fun HelpScreen(navController: NavController) {
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
 
-
     Scaffold(
         topBar = {
             NavTopAppBar {
@@ -102,22 +101,6 @@ fun HelpScreen(navController: NavController) {
                         If you have the theme type set to system, you change your app theme by changing your device theme.
                     """.trimIndent(),
                         style = MaterialTheme.typography.body1)
-                }
-                Spacer(modifier = Modifier.height(12.dp))
-            }
-            item{
-                InfoDropdown(title = "How to find easter eggs") {
-                    Text("""
-                        As a developer, I like to have fun with my products and will often hide "easter eggs" of sorts. You can find them in certain menus and contents, including dropdowns just like this one!
-                    """.trimIndent(),
-                        style = MaterialTheme.typography.body1)
-                    Button(
-                        shape = RoundedCornerShape(40.dp),
-                        modifier = Modifier.fillMaxWidth(0.5f),
-                        onClick = { navController.navigate(Screen.ClickerEasterEggScreen.route) }
-                    ) {
-                        Text("Notes Clicker Pro!")
-                    }
                 }
                 Spacer(modifier = Modifier.height(12.dp))
             }

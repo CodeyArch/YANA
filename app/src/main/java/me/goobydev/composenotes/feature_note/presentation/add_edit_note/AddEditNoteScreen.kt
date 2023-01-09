@@ -272,7 +272,6 @@ fun AddEditNoteScreen (
             }
         )
     }
-    // Could be refactored into a separate component
     if (backgroundColourPickerOpen) {
         // Grid of note colour circles that users can click to change the background of notes
         val gridState = rememberLazyGridState()
@@ -297,7 +296,7 @@ fun AddEditNoteScreen (
                         val colourInt = colour.toArgb()
                         Box(
                             modifier = Modifier
-                                .size(50.dp) // TODO: Hard coded, change for different screen sizes
+                                .aspectRatio(1f)
                                 .shadow(15.dp, CircleShape)
                                 .clip(CircleShape)
                                 .background(colour)
@@ -356,7 +355,7 @@ fun AddEditNoteScreen (
                         val colourInt = colour.toArgb()
                         Box(
                             modifier = Modifier
-                                .size(50.dp) // TODO: Hard coded, change for different screen sizes
+                                .aspectRatio(1f)
                                 .shadow(15.dp, CircleShape)
                                 .clip(CircleShape)
                                 .background(colour)

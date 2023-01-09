@@ -12,7 +12,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import dagger.hilt.android.AndroidEntryPoint
 import me.goobydev.composenotes.feature_misc_screens.presentation.about.AboutScreen
-import me.goobydev.composenotes.feature_misc_screens.presentation.clicker_screen.ClickerScreen
 import me.goobydev.composenotes.feature_misc_screens.presentation.help.HelpScreen
 import me.goobydev.composenotes.feature_misc_screens.presentation.trash.TrashScreen
 import me.goobydev.composenotes.feature_note.presentation.add_edit_note.AddEditNoteScreen
@@ -26,7 +25,6 @@ import me.goobydev.composenotes.ui.theme.ComposeNotesTheme
 and all screens on the app will be listed and referenced here */
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
-
 
     override fun onCreate(
         savedInstanceState: Bundle?,
@@ -90,9 +88,6 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(route = Screen.AboutScreen.route) {
                             AboutScreen(navController = navController)
-                        }
-                        composable(route = Screen.ClickerEasterEggScreen.route) {
-                            ClickerScreen(navController = navController)
                         }
                         composable(route = Screen.TrashedNotesScreen.route) {
                             TrashScreen(navController = navController)

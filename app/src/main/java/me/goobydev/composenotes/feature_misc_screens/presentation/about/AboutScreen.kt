@@ -97,7 +97,6 @@ fun AboutScreen(navController: NavController) {
                             R.drawable.github_logo_white
                         }),
                         contentDescription = "Click to open Github" )
-
                 }
             }
 
