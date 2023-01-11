@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import me.goobydev.composenotes.ui.theme.HintGray
@@ -24,7 +25,8 @@ fun TransparentHintTextField(
     textStyle: TextStyle = TextStyle(),
     singleLine: Boolean = false,
     onFocusChange: (FocusState) -> Unit,
-    readOnly: Boolean
+    readOnly: Boolean,
+    testTag: String = ""
 
     ) {
     Box(
@@ -38,6 +40,7 @@ fun TransparentHintTextField(
             textStyle = textStyle,
             modifier = Modifier
                 .fillMaxWidth()
+                .testTag(testTag)
                 .onFocusChanged {
                     onFocusChange(it)
                 },

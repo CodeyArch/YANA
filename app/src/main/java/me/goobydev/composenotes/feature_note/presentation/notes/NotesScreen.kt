@@ -16,17 +16,18 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import me.goobydev.composenotes.R.string
 import me.goobydev.composenotes.core.presentation.components.DefaultRadioButton
 import me.goobydev.composenotes.core.presentation.components.NavDrawer
 import me.goobydev.composenotes.core.presentation.components.NavTopAppBar
-import me.goobydev.composenotes.feature_note.presentation.add_edit_note.util.OrderType
 import me.goobydev.composenotes.feature_note.presentation.notes.components.NoteItem
 import me.goobydev.composenotes.feature_note.presentation.notes.components.OrderSection
 import me.goobydev.composenotes.feature_note.presentation.notes.components.SearchView
@@ -56,6 +57,15 @@ fun NotesScreen(
     val readOnlyDataStore = SaveReadOnlyPreference(context)
     val currentReadOnlyPreference = readOnlyDataStore.getPreferences.collectAsState(initial = false)
     //TODO: State hoisting of settings preferences
+    LaunchedEffect(key1 = true) {
+        viewModel.eventFlow.collectLatest { event ->
+            when(event) {
+                is NotesViewModel.UIEvent.LoadNote -> {
+                    navController.navigate(Screen.AddEditNoteScreen.route)
+                }
+            }
+        }
+    }
     Scaffold(
         topBar = {
             NavTopAppBar {
@@ -103,7 +113,7 @@ fun NotesScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
-                          navController.navigate(Screen.AddEditNoteScreen.route)
+                    viewModel.onEvent(NotesEvent.OpenNote)
                 },
                 backgroundColor = MaterialTheme.colors.onSurface
             ) {
@@ -126,7 +136,10 @@ fun NotesScreen(
                 enter = fadeIn() + slideInVertically(),
                 exit = fadeOut() + slideOutVertically()
             ) {
-                SearchView(searchState)
+                SearchView(
+                    searchState,
+                    modifier = Modifier.testTag("SEARCH_SECTION")
+                )
             }
             AnimatedVisibility(
                 visible = state.isOrderSectionVisible,
@@ -172,6 +185,7 @@ fun NotesScreen(
                         style = MaterialTheme.typography.h6
                     )
                     OrderSection(
+                        modifier = Modifier.testTag("ORDER_SECTION"),
                         noteOrder = state.noteOrder,
                         onOrderChange = {
                             viewModel.onEvent((NotesEvent.Order(it)))

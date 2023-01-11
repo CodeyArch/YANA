@@ -13,4 +13,5 @@ sealed class NotesEvent {
     object RestoreTrash: NotesEvent()
     object ToggleOrderSection: NotesEvent()
     object ToggleSearchSection: NotesEvent()
+    object OpenNote: NotesEvent()
 }

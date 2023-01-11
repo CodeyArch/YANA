@@ -11,24 +11,28 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 
 /* Composable to display the text field needed for searching on the notes app */
 @Composable
-fun SearchView(state: MutableState<TextFieldValue>) {
+fun SearchView(
+    state: MutableState<TextFieldValue>,
+    modifier: Modifier = Modifier,
+) {
     TextField(
         value = state.value,
         onValueChange = { value ->
             state.value = value
         },
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth(),
         textStyle = MaterialTheme.typography.body1,
         leadingIcon = {
             Icon(
                 Icons.Default.Search,
-                contentDescription = "Search",
+                contentDescription = "Search Icon",
                 modifier = Modifier
                     .padding(15.dp)
                     .size(24.dp)
@@ -40,19 +44,21 @@ fun SearchView(state: MutableState<TextFieldValue>) {
                     onClick = {
                         state.value =
                             TextFieldValue("") // Remove text from TextField when you press the 'X' icon
-                    }
+                    },
+                    modifier = Modifier.testTag("EMPTY_SEARCH_BUTTON")
                 ) {
                     Icon(
                         Icons.Default.Close,
-                        contentDescription = "",
+                        contentDescription = "Delete search",
                         modifier = Modifier
                             .padding(15.dp)
                             .size(24.dp)
+
                     )
                 }
             }
         },
         singleLine = true,
-        shape = RectangleShape, // The TextFiled has rounded corners top left and right by default
+        shape = RectangleShape, // The TextField has rounded corners top left and right by default
     )
 }

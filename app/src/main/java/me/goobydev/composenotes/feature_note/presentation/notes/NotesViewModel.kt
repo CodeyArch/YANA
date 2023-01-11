@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -34,6 +36,9 @@ class NotesViewModel @Inject constructor(
     init {
         getNotes(NoteOrder.Date(OrderType.Descending))
     }
+
+    private val _eventFlow = MutableSharedFlow<UIEvent>()
+    val eventFlow = _eventFlow.asSharedFlow()
 
     fun onEvent(event: NotesEvent) {
         when(event) {
@@ -91,6 +96,12 @@ class NotesViewModel @Inject constructor(
                     isSearchSectionVisible = !state.value.isSearchSectionVisible
                 )
             }
+            is NotesEvent.OpenNote -> {
+                viewModelScope.launch {
+                    _eventFlow.emit(UIEvent.LoadNote)
+                }
+
+            }
         }
     }
     private fun getNotes(noteOrder: NoteOrder) {
@@ -103,5 +114,8 @@ class NotesViewModel @Inject constructor(
                 )
             }
             .launchIn(viewModelScope)
+    }
+    sealed class UIEvent {
+        object LoadNote: UIEvent()
     }
 }

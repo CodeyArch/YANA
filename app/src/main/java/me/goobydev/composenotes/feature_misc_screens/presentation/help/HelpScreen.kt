@@ -3,7 +3,6 @@ package me.goobydev.composenotes.feature_misc_screens.presentation.help
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -14,7 +13,6 @@ import kotlinx.coroutines.launch
 import me.goobydev.composenotes.core.presentation.components.NavDrawer
 import me.goobydev.composenotes.core.presentation.components.NavTopAppBar
 import me.goobydev.composenotes.feature_misc_screens.presentation.components.InfoDropdown
-import me.goobydev.composenotes.feature_note.presentation.util.Screen
 
 /* A help screen to explain the apps functions and capabilities to the user.
 This screen also houses the access to the clicker easter egg */

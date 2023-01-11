@@ -28,12 +28,14 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.luminance
+import androidx.core.graphics.toColor
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import kotlinx.coroutines.flow.collectLatest
@@ -175,6 +177,7 @@ fun AddEditNoteScreen (
                                 .clickable {
                                     backgroundColourPickerOpen = true
                                 }
+                                .testTag("BACKGROUND_COLOUR_BUTTON")
                         )
                         // Text colour change button
                         Box(
@@ -197,6 +200,7 @@ fun AddEditNoteScreen (
                                 .clickable {
                                     textColourPickerOpen = true
                                 }
+                                .testTag("TEXT_COLOUR_BUTTON")
                         ) {
                             Text(
                                 text = "Aa",
@@ -231,7 +235,8 @@ fun AddEditNoteScreen (
                     fontFamily = MaterialTheme.typography.h6.fontFamily,
                     fontWeight = MaterialTheme.typography.h6.fontWeight,
                     fontSize = MaterialTheme.typography.h6.fontSize
-                )
+                ),
+                testTag = "TITLE_SECTION"
             )
             Spacer(modifier = Modifier.height(16.dp))
 
@@ -259,7 +264,8 @@ fun AddEditNoteScreen (
                     fontWeight = MaterialTheme.typography.body1.fontWeight,
                     fontSize = MaterialTheme.typography.body1.fontSize
                 ),
-                modifier = Modifier.fillMaxHeight()
+                modifier = Modifier.fillMaxHeight(),
+                testTag = "CONTENT_SECTION"
             )
         }
     }
@@ -294,6 +300,7 @@ fun AddEditNoteScreen (
                 ) {
                     items(Note.mixedColoursV2) { colour ->
                         val colourInt = colour.toArgb()
+                        println(colour.toString())
                         Box(
                             modifier = Modifier
                                 .aspectRatio(1f)
@@ -324,6 +331,7 @@ fun AddEditNoteScreen (
                                     backgroundColourPickerOpen =
                                         false // Closes the colour select menu
                                 }
+                                .testTag(colour.toString())
                         )
                     }
                 }
@@ -375,6 +383,7 @@ fun AddEditNoteScreen (
                                     textColourPickerOpen =
                                         false // Closes the colour select menu
                                 }
+                                .testTag(colour.toString())
                         )
                     }
                 }
