@@ -18,5 +18,5 @@
     <string name="theme_setting_description">Changes default colours of visible elements</string>
     <string name="time">Time</string>
     <string name="fonts">Fonts</string>
-    <string name="restore_note">Restore note</string>
+    <string name="restore_note">Restore Note</string>
 </resources>

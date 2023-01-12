@@ -331,7 +331,7 @@ fun AddEditNoteScreen (
                                     backgroundColourPickerOpen =
                                         false // Closes the colour select menu
                                 }
-                                .testTag(colour.toString())
+                                .testTag("BACKGROUND_COLOUR_OPTION")
                         )
                     }
                 }
@@ -383,7 +383,7 @@ fun AddEditNoteScreen (
                                     textColourPickerOpen =
                                         false // Closes the colour select menu
                                 }
-                                .testTag(colour.toString())
+                                .testTag("TEXT_COLOUR_OPTION")
                         )
                     }
                 }

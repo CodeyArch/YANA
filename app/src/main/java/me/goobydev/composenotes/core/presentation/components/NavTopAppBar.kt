@@ -7,6 +7,8 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 
 /* Top App Bar Composable used on the majority of screens throughout the notes app,
 opens the navigation drawer */
@@ -18,7 +20,8 @@ fun NavTopAppBar(onNavIconClick: () -> Unit) {
             IconButton(
                 onClick = {
                     onNavIconClick()
-                }
+                },
+                modifier = Modifier.testTag("NAV_DRAWER_BUTTON")
             ) {
                 Icon(
                     imageVector = Icons.Filled.Menu,

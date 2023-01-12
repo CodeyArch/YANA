@@ -8,6 +8,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.unit.dp
 
 /* A simple composable that changes a boolean to its opposite when clicked. This is used for settings
@@ -24,7 +25,13 @@ fun SettingSwitch(
             .fillMaxWidth()
             .clickable {
                 onClick()
-            },
+            }
+            .testTag(
+                title
+                    .replace(" ", "_")
+                    .uppercase()
+            )
+        ,
         verticalAlignment = Alignment.CenterVertically
     ) {
         Column(modifier = Modifier.fillMaxWidth(0.9f)) {
