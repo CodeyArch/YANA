@@ -1,4 +1,4 @@
-package me.goobydev.composenotes.feature_settings.data
+package me.goobydev.composenotes.feature_note.data.preferences
 
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -9,19 +9,19 @@ import androidx.datastore.preferences.preferencesDataStore
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
-/* Datastore that Saves and Gets preferences related to Read Only */
-class SaveReadOnlyPreference(private val context: Context) {
+/* Datastore that Saves and Gets preferences related to Autosave */
+class SaveAutosavePreferences(private val context: Context) {
     companion object {
-        private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("readOnlyPreference")
-        val USER_READ_ONLY_KEY = booleanPreferencesKey("read_only_preference")
+        private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("saveAutosavePreference")
+        val USER_AUTOSAVE_KEY = booleanPreferencesKey("save_autosave_preference")
     }
     val getPreferences: Flow<Boolean?> = context.dataStore.data
         .map { preferences ->
-            preferences[USER_READ_ONLY_KEY] ?: false
+            preferences[USER_AUTOSAVE_KEY] ?: true
         }
     suspend fun savePreferences(preference: Boolean) {
         context.dataStore.edit { preferences ->
-            preferences[USER_READ_ONLY_KEY] = preference
+            preferences[USER_AUTOSAVE_KEY] = preference
         }
     }
 }

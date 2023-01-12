@@ -74,7 +74,7 @@ fun navigationDrawerItemsList(): List<NavigationDrawerItem> {
         NavigationDrawerItem(
             icon = painterResource(id = R.drawable.archive),
             label = "Archive",
-            route = Screen.TrashedNotesScreen.route
+            route = Screen.ArchiveNotesScreen.route
         )
     )
     itemsList.add(

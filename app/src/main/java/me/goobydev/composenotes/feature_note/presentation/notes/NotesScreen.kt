@@ -32,8 +32,8 @@ import me.goobydev.composenotes.feature_note.presentation.notes.components.NoteI
 import me.goobydev.composenotes.feature_note.presentation.notes.components.OrderSection
 import me.goobydev.composenotes.feature_note.presentation.notes.components.SearchView
 import me.goobydev.composenotes.feature_note.presentation.util.Screen
-import me.goobydev.composenotes.feature_settings.data.SaveReadOnlyPreference
-import me.goobydev.composenotes.feature_settings.data.SaveTrashedPreference
+import me.goobydev.composenotes.feature_note.data.preferences.SaveReadOnlyPreference
+import me.goobydev.composenotes.feature_note.data.preferences.SaveTrashedPreference
 
 
 /* This is the main screen that users will see while using the notes application. This screen contains

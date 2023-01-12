@@ -16,11 +16,11 @@ import me.goobydev.composenotes.R
 import me.goobydev.composenotes.core.presentation.components.NavDrawer
 import me.goobydev.composenotes.core.presentation.components.NavTopAppBar
 import me.goobydev.composenotes.feature_note.presentation.util.Screen
-import me.goobydev.composenotes.feature_settings.data.SaveTrashedPreference
-import me.goobydev.composenotes.feature_settings.presentation.components.FontSelect
-import me.goobydev.composenotes.feature_settings.presentation.components.SettingOpen
-import me.goobydev.composenotes.feature_settings.presentation.components.SettingSwitch
-import me.goobydev.composenotes.feature_settings.presentation.components.ThemeSelect
+import me.goobydev.composenotes.feature_note.data.preferences.SaveTrashedPreference
+import me.goobydev.composenotes.feature_note.presentation.settings.components.FontSelect
+import me.goobydev.composenotes.feature_note.presentation.settings.components.SettingOpen
+import me.goobydev.composenotes.feature_note.presentation.settings.components.SettingSwitch
+import me.goobydev.composenotes.feature_note.presentation.settings.components.ThemeSelect
 
 /* The settings screen which holds the main important settings and a link to other settings screens.
 Currently the only screen it links to is the NoteEditingSettingsScreen as other settings

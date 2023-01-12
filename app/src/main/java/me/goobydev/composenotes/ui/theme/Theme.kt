@@ -11,8 +11,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import me.goobydev.composenotes.feature_settings.data.SaveUserFont
-import me.goobydev.composenotes.feature_settings.data.SaveUserTheme
+import me.goobydev.composenotes.feature_note.data.preferences.SaveUserFont
+import me.goobydev.composenotes.feature_note.data.preferences.SaveUserTheme
 
 /* A collection of the themes for the app and the implementation of applying them */
 private val DarkColorPalette = darkColors(

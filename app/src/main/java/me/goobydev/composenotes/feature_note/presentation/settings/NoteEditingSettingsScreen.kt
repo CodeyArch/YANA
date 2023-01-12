@@ -14,10 +14,10 @@ import androidx.navigation.NavController
 import kotlinx.coroutines.launch
 import me.goobydev.composenotes.core.presentation.components.BackTopAppBar
 import me.goobydev.composenotes.feature_note.presentation.util.Screen
-import me.goobydev.composenotes.feature_settings.data.SaveAutosavePreferences
-import me.goobydev.composenotes.feature_settings.data.SaveReadOnlyPreference
-import me.goobydev.composenotes.feature_settings.data.SaveSaveOnBackPressPreferences
-import me.goobydev.composenotes.feature_settings.presentation.components.SettingSwitch
+import me.goobydev.composenotes.feature_note.data.preferences.SaveAutosavePreferences
+import me.goobydev.composenotes.feature_note.data.preferences.SaveReadOnlyPreference
+import me.goobydev.composenotes.feature_note.data.preferences.SaveSaveOnBackPressPreferences
+import me.goobydev.composenotes.feature_note.presentation.settings.components.SettingSwitch
 
 /* The screen that holds settings related specifically to note editing such as autosaving
 and read only*/

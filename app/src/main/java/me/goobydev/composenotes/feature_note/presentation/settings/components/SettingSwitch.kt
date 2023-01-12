@@ -1,4 +1,4 @@
-package me.goobydev.composenotes.feature_settings.presentation.components
+package me.goobydev.composenotes.feature_note.presentation.settings.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*

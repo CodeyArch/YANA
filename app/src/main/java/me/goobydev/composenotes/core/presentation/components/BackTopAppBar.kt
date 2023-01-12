@@ -7,6 +7,8 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 
 /* Back Top App Bar Composable used on settings screens, goes back to previous page */
 @Composable
@@ -17,7 +19,8 @@ fun BackTopAppBar(onNavIconClick: () -> Unit) {
             IconButton(
                 onClick = {
                     onNavIconClick()
-                }
+                },
+                modifier = Modifier.testTag("BACK_NAVIGATION")
             ) {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,

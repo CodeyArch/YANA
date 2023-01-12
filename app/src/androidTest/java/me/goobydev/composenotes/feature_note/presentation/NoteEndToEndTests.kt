@@ -6,24 +6,14 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.navigation.NavType
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import androidx.test.runner.AndroidJUnitRunner
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.HiltTestApplication
 import dagger.hilt.android.testing.UninstallModules
+import me.goobydev.composenotes.core.presentation.components.NavigationComponent
 import me.goobydev.composenotes.di.AppModule
-import me.goobydev.composenotes.feature_misc_screens.presentation.trash.TrashScreen
-import me.goobydev.composenotes.feature_note.presentation.add_edit_note.AddEditNoteScreen
 import me.goobydev.composenotes.feature_note.presentation.main.MainActivity
-import me.goobydev.composenotes.feature_note.presentation.notes.NotesScreen
-import me.goobydev.composenotes.feature_note.presentation.util.Screen
-import me.goobydev.composenotes.feature_settings.presentation.settings.NoteEditingSettingsScreen
-import me.goobydev.composenotes.feature_settings.presentation.settings.SettingsScreen
 import me.goobydev.composenotes.ui.theme.ComposeNotesTheme
 import org.junit.Before
 import org.junit.Rule
@@ -55,57 +45,7 @@ class NoteTests {
         hiltRule.inject()
         composeRule.activity.setContent {
             ComposeNotesTheme {
-                val navController = rememberNavController()
-                NavHost(
-                    navController = navController,
-                    startDestination = Screen.NotesScreen.route
-                ) {
-                    composable(route = Screen.NotesScreen.route) {
-                        NotesScreen(navController = navController)
-                    }
-                    composable(
-                        route = Screen.AddEditNoteScreen.route +
-                                "?noteId={noteId}&noteColour={noteColour}&readOnly={readOnly}",
-                        arguments = listOf(
-                            navArgument(
-                                name = "noteId"
-                            ) {
-                                type = NavType.IntType
-                                defaultValue = -1
-                            },
-                            navArgument(
-                                name = "noteColour"
-                            ) {
-                                type = NavType.IntType
-                                defaultValue = -1
-                            },
-                            navArgument(
-                                name = "readOnly"
-                            ) {
-                                type = NavType.BoolType
-                                defaultValue = false
-                            }
-
-                        )
-                    ) {
-                        val colour = it.arguments?.getInt("noteColour") ?: -1
-                        val readOnly = it.arguments?.getBoolean("readOnly") ?: false
-                        AddEditNoteScreen(
-                            navController = navController,
-                            noteColour = colour,
-                            readOnly = readOnly
-                        )
-                    }
-                    composable(route = Screen.SettingsScreen.route) {
-                        SettingsScreen(navController = navController)
-                    }
-                    composable(route = Screen.NoteEditingSettingsScreen.route) {
-                        NoteEditingSettingsScreen(navController = navController)
-                    }
-                    composable(route = Screen.TrashedNotesScreen.route) {
-                        TrashScreen(navController = navController)
-                    }
-                }
+                NavigationComponent()
             }
         }
     }
@@ -477,5 +417,51 @@ class NoteTests {
             .performClick()
 
     }
-    // Add tests for checking how settings affect note archival
+
+    /* This text exists to ensure navigation across the whole app works as expected */
+    @Test
+    fun navigationLoopForWholeApp() {
+        composeRule.onNodeWithTag("NAV_DRAWER_BUTTON")
+            .assertExists()
+            .performClick()
+        composeRule.onNodeWithTag("SETTINGS")
+            .assertIsDisplayed()
+            .performClick()
+
+        composeRule.onNodeWithTag("NOTE_EDITING")
+            .assertIsDisplayed()
+            .performClick()
+
+        composeRule.onNodeWithTag("BACK_NAVIGATION")
+            .assertExists()
+            .performClick()
+
+        composeRule.onNodeWithTag("NAV_DRAWER_BUTTON")
+            .assertExists()
+            .performClick()
+        composeRule.onNodeWithTag("ARCHIVE")
+            .assertIsDisplayed()
+            .performClick()
+
+        composeRule.onNodeWithTag("NAV_DRAWER_BUTTON")
+            .assertExists()
+            .performClick()
+        composeRule.onNodeWithTag("HELP")
+            .assertIsDisplayed()
+            .performClick()
+
+        composeRule.onNodeWithTag("NAV_DRAWER_BUTTON")
+            .assertExists()
+            .performClick()
+        composeRule.onNodeWithTag("ABOUT")
+            .assertIsDisplayed()
+            .performClick()
+
+        composeRule.onNodeWithTag("NAV_DRAWER_BUTTON")
+            .assertExists()
+            .performClick()
+        composeRule.onNodeWithTag("HOME")
+            .assertIsDisplayed()
+            .performClick()
+    }
 }

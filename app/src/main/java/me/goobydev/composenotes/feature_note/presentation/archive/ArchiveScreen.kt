@@ -1,4 +1,4 @@
-package me.goobydev.composenotes.feature_misc_screens.presentation.trash
+package me.goobydev.composenotes.feature_note.presentation.archive
 
 import android.annotation.SuppressLint
 import androidx.compose.animation.*
@@ -14,7 +14,6 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
@@ -41,7 +40,7 @@ If the user has trash disabled, no notes will be posted here
  */
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun TrashScreen(
+fun ArchiveScreen(
     navController: NavController,
     viewModel: NotesViewModel = hiltViewModel()
 ) {

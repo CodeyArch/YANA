@@ -35,7 +35,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.luminance
-import androidx.core.graphics.toColor
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import kotlinx.coroutines.flow.collectLatest
@@ -45,8 +44,8 @@ import me.goobydev.composenotes.feature_note.domain.model.Note
 import me.goobydev.composenotes.feature_note.presentation.add_edit_note.components.BackPressIntercept
 import me.goobydev.composenotes.feature_note.presentation.add_edit_note.components.ExitWithoutSaving
 import me.goobydev.composenotes.feature_note.presentation.add_edit_note.components.TransparentHintTextField
-import me.goobydev.composenotes.feature_settings.data.SaveAutosavePreferences
-import me.goobydev.composenotes.feature_settings.data.SaveSaveOnBackPressPreferences
+import me.goobydev.composenotes.feature_note.data.preferences.SaveAutosavePreferences
+import me.goobydev.composenotes.feature_note.data.preferences.SaveSaveOnBackPressPreferences
 
 /* The AddEditNoteScreen exists in order to allow the users to edit an existing note,
 create a new note or view a note in read only. This screen is accessed through clicking a note item

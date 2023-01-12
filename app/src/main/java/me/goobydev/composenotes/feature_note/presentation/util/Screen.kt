@@ -7,6 +7,6 @@ sealed class Screen(val route: String) {
     object SettingsScreen: Screen("settings_screen")
     object HelpScreen: Screen("help_screen")
     object AboutScreen: Screen("about_screen")
-    object TrashedNotesScreen: Screen("trashed_screen")
+    object ArchiveNotesScreen: Screen("archive_screen")
     object NoteEditingSettingsScreen: Screen("note_editing_settings_screen")
 }

@@ -1,4 +1,4 @@
-package me.goobydev.composenotes.feature_settings.presentation.components
+package me.goobydev.composenotes.feature_note.presentation.settings.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -15,19 +15,18 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import me.goobydev.composenotes.R
 import me.goobydev.composenotes.core.presentation.components.DefaultRadioButton
-import me.goobydev.composenotes.feature_settings.data.SaveUserFont
+import me.goobydev.composenotes.feature_note.data.preferences.SaveUserTheme
 
-/* A composable to allow users to select the global font for the app. It takes and saves
-preferences using the SaveUserFont.kt preferences Datastore */
+/* A composable to allow users to select the global theme for the app. It takes and saves
+preferences using the SaveUserTheme.kt preferences Datastore */
 @Composable
-fun FontSelect(
+fun ThemeSelect(
     onDismiss: () -> Unit,
 ) {
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
-    val dataStore = SaveUserFont(context)
-    val currentTheme = dataStore.getFont.collectAsState(initial = "")
-
+    val dataStore = SaveUserTheme(context)
+    val currentTheme = dataStore.getTheme.collectAsState(initial = "")
     AlertDialog(
         shape = RoundedCornerShape(40.dp),
         backgroundColor = MaterialTheme.colors.surface,
@@ -36,7 +35,7 @@ fun FontSelect(
             .fillMaxWidth()
             .wrapContentHeight(),
         title = {
-            Text(stringResource(R.string.fonts))
+            Text(stringResource(R.string.theme))
         },
         onDismissRequest =  onDismiss,
         buttons = {
@@ -47,70 +46,81 @@ fun FontSelect(
                     selected = currentTheme.value == "System",
                     onSelect = {
                         scope.launch {
-                            dataStore.saveFont("System")
+                            dataStore.saveTheme("System")
                             onDismiss()
                         }
                     })
                 Spacer(modifier = Modifier.height(4.dp))
                 DefaultRadioButton(
-                    text = "Arimo",
-                    selected = currentTheme.value == "Arimo",
+                    text = "Light",
+                    selected = currentTheme.value == "Light",
                     onSelect = {
                         scope.launch {
-                            dataStore.saveFont("Arimo")
+                            dataStore.saveTheme("Light")
                             onDismiss()
                         }
                     })
                 Spacer(modifier = Modifier.height(4.dp))
                 DefaultRadioButton(
-                    text = "Roboto",
-                    selected = currentTheme.value == "Roboto",
+                    text = "Dark",
+                    selected = currentTheme.value == "Dark",
                     onSelect = {
                         scope.launch {
-                            dataStore.saveFont("Roboto")
+                            dataStore.saveTheme("Dark")
                             onDismiss()
                         }
                     })
                 Spacer(modifier = Modifier.height(4.dp))
                 DefaultRadioButton(
-                    text = "Reem Kufi",
-                    selected = currentTheme.value == "Reem Kufi",
+                    text = "Bumblebee",
+                    selected = currentTheme.value == "Bumblebee",
                     onSelect = {
                         scope.launch {
-                            dataStore.saveFont("Reem Kufi")
+                            dataStore.saveTheme("Bumblebee")
                             onDismiss()
                         }
                     })
                 Spacer(modifier = Modifier.height(4.dp))
                 DefaultRadioButton(
-                    text = "Comic Sans",
-                    selected = currentTheme.value == "Comic Sans",
+                    text = "Bubblegum",
+                    selected = currentTheme.value == "Bubblegum",
                     onSelect = {
                         scope.launch {
-                            dataStore.saveFont("Comic Sans")
+                            dataStore.saveTheme("Bubblegum")
                             onDismiss()
                         }
                     })
                 Spacer(modifier = Modifier.height(4.dp))
                 DefaultRadioButton(
-                    text = "Terminus",
-                    selected = currentTheme.value == "Terminus",
+                    text = "Github Dark",
+                    selected = currentTheme.value == "Github Dark",
                     onSelect = {
                         scope.launch {
-                            dataStore.saveFont("Terminus")
+                            dataStore.saveTheme("Github Dark")
                             onDismiss()
                         }
                     })
                 Spacer(modifier = Modifier.height(4.dp))
                 DefaultRadioButton(
-                    text = "Jetbrains Mono",
-                    selected = currentTheme.value == "Jetbrains Mono",
+                    text = "Solarized Dark",
+                    selected = currentTheme.value == "Solarized Dark",
                     onSelect = {
                         scope.launch {
-                            dataStore.saveFont("Jetbrains Mono")
+                            dataStore.saveTheme("Solarized Dark")
                             onDismiss()
                         }
                     })
+                Spacer(modifier = Modifier.height(4.dp))
+                DefaultRadioButton(
+                    text = "Dracula",
+                    selected = currentTheme.value == "Dracula",
+                    onSelect = {
+                        scope.launch {
+                            dataStore.saveTheme("Dracula")
+                            onDismiss()
+                        }
+                    })
+
             }
         }
     )

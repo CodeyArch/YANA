@@ -1,4 +1,4 @@
-package me.goobydev.composenotes.feature_settings.data
+package me.goobydev.composenotes.feature_note.data.preferences
 
 import android.content.Context
 import androidx.datastore.core.DataStore
