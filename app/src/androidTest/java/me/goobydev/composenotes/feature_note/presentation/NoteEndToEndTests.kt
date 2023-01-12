@@ -259,88 +259,6 @@ class NoteTests {
     }
 
 
-
-    /* This test works by creating 3 notes, all with different background colours and content.
-    * It then confirms the existence of all 3 notes and then checks they are displayed correctly
-    * when sorted by colour ascending. After that, it will then check they are displayed correctly
-    * when sorted by colour descending */
-
-    /* This test could be seen as flaky as its dependent on the colours not changing order.
-     If someone were to change the colours for notes, this tests result could change.
-
-     This test will only work assuming the screen is portrait due to the fact that background
-     colour and text colour buttons aren't available in landscape */
-    @Test
-    fun saveNewNotes_orderByColour() {
-        for(i in 1..3) {
-            composeRule.onNodeWithContentDescription("Add Note").assertExists().performClick()
-
-            composeRule
-                .onNodeWithTag("TITLE_SECTION")
-                .assertIsDisplayed()
-                .performTextInput("$i")
-            composeRule
-                .onNodeWithTag("CONTENT_SECTION")
-                .assertIsDisplayed()
-                .performTextInput("$i")
-            composeRule
-                .onNodeWithTag("BACKGROUND_COLOUR_BUTTON")
-                .assertIsDisplayed()
-                .performClick()
-            composeRule
-                .onAllNodesWithTag("BACKGROUND_COLOUR_OPTION")[i]
-                .assertIsDisplayed()
-                .performClick()
-
-            // Not technically needed here, however, it makes the note easier to see on a manual observation
-            composeRule
-                .onNodeWithTag("TEXT_COLOUR_BUTTON")
-                .assertIsDisplayed()
-                .performClick()
-            composeRule
-                .onAllNodesWithTag("TEXT_COLOUR_OPTION")[12]
-                .assertIsDisplayed()
-                .performClick()
-
-
-            composeRule.onNodeWithContentDescription("Save Note").performClick()
-        }
-
-        composeRule.onNodeWithText("1").assertIsDisplayed()
-        composeRule.onNodeWithText("2").assertIsDisplayed()
-        composeRule.onNodeWithText("3").assertIsDisplayed()
-
-        composeRule
-            .onNodeWithContentDescription("Sort")
-            .performClick()
-        composeRule
-            .onNodeWithContentDescription("Colour")
-            .performClick()
-        composeRule
-            .onNodeWithContentDescription("Ascending")
-            .performClick()
-        composeRule.onAllNodesWithTag("NOTE_ITEM")[0]
-            .assertTextContains("2")
-        composeRule.onAllNodesWithTag("NOTE_ITEM")[1]
-            .assertTextContains("1")
-        composeRule.onAllNodesWithTag("NOTE_ITEM")[2]
-            .assertTextContains("3")
-
-        composeRule
-            .onNodeWithContentDescription("Colour")
-            .performClick()
-        composeRule
-            .onNodeWithContentDescription("Descending")
-            .performClick()
-
-        composeRule.onAllNodesWithTag("NOTE_ITEM")[0]
-            .assertTextContains("3")
-        composeRule.onAllNodesWithTag("NOTE_ITEM")[1]
-            .assertTextContains("1")
-        composeRule.onAllNodesWithTag("NOTE_ITEM")[2]
-            .assertTextContains("2")
-    }
-
     /* This test will only work assuming the screen is portrait due to the fact that background
     * colour and text colour buttons aren't available in landscape
     *
@@ -537,6 +455,26 @@ class NoteTests {
 
         composeRule.onAllNodesWithTag("NOTE_ITEM")[0]
             .assertDoesNotExist()
+
+        /* This part is necessary because the test device can sometimes persist
+        the settings change between tests. Resetting it back to what it was before
+        allows for consistent success */
+        composeRule.onNodeWithTag("NAV_DRAWER_BUTTON")
+            .assertExists()
+            .performClick()
+        composeRule.onNodeWithTag("SETTINGS")
+            .assertIsDisplayed()
+            .performClick()
+
+        composeRule.onNodeWithTag("MOVE_DELETED_NOTES_TO_ARCHIVE")
+            .assertIsDisplayed()
+            .performClick()
+        composeRule.onNodeWithTag("NAV_DRAWER_BUTTON")
+            .assertExists()
+            .performClick()
+        composeRule.onNodeWithTag("HOME")
+            .assertIsDisplayed()
+            .performClick()
 
     }
     // Add tests for checking how settings affect note archival

@@ -1,5 +1,6 @@
 package me.goobydev.composenotes.feature_note.domain.use_case
 
+import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.runBlocking
 import me.goobydev.composenotes.feature_note.data.repository.FakeNoteRepository
 import me.goobydev.composenotes.feature_note.domain.model.InvalidNoteException
@@ -26,9 +27,11 @@ class AddNoteTest {
                 timestamp = 100_000L,
                 backgroundColour = 1,
                 textColour = 1,
-                isTrashed = false
+                isTrashed = false,
+                id = 1
             )
         )
+        assertThat(fakeRepository.getNoteById(1)).isNull()
     }
 
     @Test(expected = InvalidNoteException::class )
@@ -40,9 +43,11 @@ class AddNoteTest {
                 timestamp = 100_000L,
                 backgroundColour = 1,
                 textColour = 1,
-                isTrashed = false
+                isTrashed = false,
+                id = 1
             )
         )
+        assertThat(fakeRepository.getNoteById(1)).isNull()
     }
 
     @Test(expected = InvalidNoteException::class )
@@ -54,9 +59,11 @@ class AddNoteTest {
                 timestamp = 100_000L,
                 backgroundColour = 1,
                 textColour = 1,
-                isTrashed = false
+                isTrashed = false,
+                id = 1
             )
         )
+        assertThat(fakeRepository.getNoteById(1)).isNull()
     }
 
     @Test()
@@ -68,8 +75,10 @@ class AddNoteTest {
                 timestamp = 100_000L,
                 backgroundColour = 1,
                 textColour = 1,
-                isTrashed = false
+                isTrashed = false,
+                id = 1
             )
         )
+        assertThat(fakeRepository.getNoteById(1)).isNotNull()
     }
 }
