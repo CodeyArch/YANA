@@ -1,3 +1,6 @@
+![AppBanner](https://user-images.githubusercontent.com/70377808/212323802-cfe0293d-9ac1-4e89-be4a-16c19f7ac7d4.png)
+
+
 ## What is YANA?
 Yet Another Note App is a simple android note app made with the latest android libraries, including Jetpack Compose, Dagger Hilt and Room. The project was inspired by the clean architecture note app created by Phillipp Lackner found here https://github.com/philipplackner/CleanArchitectureNoteApp. The project began by following the clean architecture note app tutorial and then expanding on the app with new features, designs and optimisations. 
 
