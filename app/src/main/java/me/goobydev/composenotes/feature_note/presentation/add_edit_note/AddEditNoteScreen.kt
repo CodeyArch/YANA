@@ -40,12 +40,12 @@ import androidx.navigation.NavController
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import me.goobydev.composenotes.R
+import me.goobydev.composenotes.feature_note.data.preferences.SaveAutosavePreferences
+import me.goobydev.composenotes.feature_note.data.preferences.SaveSaveOnBackPressPreferences
 import me.goobydev.composenotes.feature_note.domain.model.Note
 import me.goobydev.composenotes.feature_note.presentation.add_edit_note.components.BackPressIntercept
 import me.goobydev.composenotes.feature_note.presentation.add_edit_note.components.ExitWithoutSaving
 import me.goobydev.composenotes.feature_note.presentation.add_edit_note.components.TransparentHintTextField
-import me.goobydev.composenotes.feature_note.data.preferences.SaveAutosavePreferences
-import me.goobydev.composenotes.feature_note.data.preferences.SaveSaveOnBackPressPreferences
 
 /* The AddEditNoteScreen exists in order to allow the users to edit an existing note,
 create a new note or view a note in read only. This screen is accessed through clicking a note item
@@ -54,7 +54,6 @@ or the floating action button on the home notes page */
 @Composable
 fun AddEditNoteScreen (
     navController: NavController,
-    noteColour: Int,
     readOnly: Boolean,
     viewModel: AddEditNoteViewModel = hiltViewModel()
 ) {
@@ -66,19 +65,11 @@ fun AddEditNoteScreen (
     var textColourPickerOpen by rememberSaveable { mutableStateOf(false) }
     var exitWithoutSaveOpen by rememberSaveable { mutableStateOf(false) }
 
-    //TODO: State hoisting of settings preferences
     val context = LocalContext.current
     val saveOnBackPressDataStore = SaveSaveOnBackPressPreferences(context)
     val currentSaveOnBackPressPreferences = saveOnBackPressDataStore.getPreferences.collectAsState(initial = true)
     val saveAutosaveDataStore = SaveAutosavePreferences(context)
     val currentAutosavePreferences = saveAutosaveDataStore.getPreferences.collectAsState(initial = true)
-
-    val noteBackgroundAnimatable = remember {
-        Animatable(
-            Color(if(noteColour != -1) noteColour else viewModel.noteColour.value)
-        )
-    } // TODO: Doesn't survive configuration changes
-    val scope = rememberCoroutineScope()
 
     LaunchedEffect(key1 = true) {
         viewModel.eventFlow.collectLatest { event ->
@@ -123,7 +114,7 @@ fun AddEditNoteScreen (
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(noteBackgroundAnimatable.value)
+                .background(Color(viewModel.noteColour.value))
                 .padding(16.dp)
         ) {
             val configuration = LocalConfiguration.current
@@ -314,14 +305,6 @@ fun AddEditNoteScreen (
                                     shape = CircleShape
                                 )
                                 .clickable {
-                                    scope.launch {
-                                        noteBackgroundAnimatable.animateTo(
-                                            targetValue = Color(colourInt),
-                                            animationSpec = tween(
-                                                durationMillis = 500
-                                            )
-                                        )
-                                    }
                                     viewModel.onEvent(
                                         AddEditNoteEvent.ChangeBackgroundColour(
                                             colourInt

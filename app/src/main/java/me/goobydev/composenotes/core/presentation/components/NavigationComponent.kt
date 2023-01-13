@@ -38,12 +38,6 @@ fun NavigationComponent() {
                     defaultValue = -1
                 },
                 navArgument(
-                    name = "noteColour"
-                ) {
-                    type = NavType.IntType
-                    defaultValue = -1
-                },
-                navArgument(
                     name = "readOnly"
                 ) {
                     type = NavType.BoolType
@@ -52,11 +46,9 @@ fun NavigationComponent() {
 
             )
         ) {
-            val colour = it.arguments?.getInt("noteColour") ?: -1
             val readOnly = it.arguments?.getBoolean("readOnly") ?: false
             AddEditNoteScreen(
                 navController = navController,
-                noteColour = colour,
                 readOnly = readOnly
             )
         }
