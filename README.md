@@ -12,10 +12,19 @@ YANA can be used for taking simplistic but customisable notes on any Android dev
 * Autosave and save on back press to make sure your notes are always up to date - Settings are available to disable this 
 * Font and theme selection for more customisation
 
-<img src= https://user-images.githubusercontent.com/70377808/207621848-70bdab13-c2e4-4326-9fd6-c0936764c958.png width="300">  <img src=https://user-images.githubusercontent.com/70377808/207623850-3ee60925-dd7e-4479-b2d2-3645008faef2.png width="300">  <img src=https://user-images.githubusercontent.com/70377808/207623870-59af59b8-befc-4a48-856c-6157a7e3cd34.png width="300">
+## Demo
+![NoteSortingAndEditing](https://user-images.githubusercontent.com/70377808/212318932-e8f48bd5-46fc-46b7-ac63-ad47002eb7fc.gif) 
+![NoteThemesAndFonts](https://user-images.githubusercontent.com/70377808/212319031-670e3fa2-eb57-4c04-9787-765f8fa45957.gif)
 
 ## Where can I get YANA? 
-Currently, YANA is not available to download anywhere other than in this repository. In the future, you may see YANA appear on Google Play
+Currently, YANA is not available to download anywhere other than in this repository. There is a planned Google Play release in the near future
+To install YANA from this repository, download the latest release APK and use an APK manager to find the apk in your files and dowload the app
 
 ## What is the future like for YANA? 
-YANA should be receiving some minor updates in the near future, however, long term it will just be an open source project that anyone can add to. The project was created initially only for the sake of learning modern Android development. 
+YANA may receive future updates, however, the project was initally created in order to learn Modern Android Development and so it is not a priority project. The code is open source so anyone may adapt it for their own uses if they are unsatisfied with its current development 
+
+## Is there anyway I can support this project and its developer?
+Yes! If you like this project then you can support in two main ways
+- Give this project a star! Stars are awesome!
+- Donate to my Ko-fi page and buy me a ~~coffee~~ tea! https://ko-fi.com/goobydev
+Once this project is published onto google play, you can also support me by leaving a review 
