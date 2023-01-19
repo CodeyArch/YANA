@@ -5,7 +5,7 @@
 Yet Another Note App is a simple android note app made with the latest android libraries, including Jetpack Compose, Dagger Hilt and Room. The project was inspired by the clean architecture note app created by Phillipp Lackner found here https://github.com/philipplackner/CleanArchitectureNoteApp. The project began by following the clean architecture note app tutorial and then expanding on the app with new features, designs and optimisations. 
 
 ## What can YANA do?
-YANA can be used for taking simplistic but customisable notes on any Android device above version 5.0. The main features include 
+YANA can be used for taking simplistic but customisable notes on any Android device above version 5.1. The main features include 
 * Note creation and editing
 * Wide range of note background and text colours
 * Sorting filters and searching to help you find specific notes out of thousands
@@ -20,7 +20,7 @@ YANA can be used for taking simplistic but customisable notes on any Android dev
 ![NoteThemesAndFonts](https://user-images.githubusercontent.com/70377808/212319031-670e3fa2-eb57-4c04-9787-765f8fa45957.gif)
 
 ## Where can I get YANA? 
-Currently, YANA is not available to download anywhere other than in this repository. There is a planned Google Play release in the near future
+You can get YANA on Google play here: https://play.google.com/store/apps/details?id=me.goobydev.composenotes or you can download it from the releases page in this repository 
 To install YANA from this repository, download the latest release APK and use an APK manager to find the apk in your files and dowload the app
 
 ## What is the future like for YANA? 
