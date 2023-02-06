@@ -12,8 +12,8 @@ import me.goobydev.composenotes.feature_note.presentation.archive.ArchiveScreen
 import me.goobydev.composenotes.feature_note.presentation.add_edit_note.AddEditNoteScreen
 import me.goobydev.composenotes.feature_note.presentation.notes.NotesScreen
 import me.goobydev.composenotes.feature_note.presentation.util.Screen
-import me.goobydev.composenotes.feature_settings.presentation.settings.NoteEditingSettingsScreen
-import me.goobydev.composenotes.feature_settings.presentation.settings.SettingsScreen
+import me.goobydev.composenotes.feature_note.presentation.settings.NoteEditingSettingsScreen
+import me.goobydev.composenotes.feature_note.presentation.settings.SettingsScreen
 
 /* A composable function used for the main navigation for the entire application. It exists as a
 * composable to make it reusable */

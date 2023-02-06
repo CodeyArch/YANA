@@ -1,4 +1,4 @@
-package me.goobydev.composenotes.feature_settings.presentation.settings
+package me.goobydev.composenotes.feature_note.presentation.settings
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
@@ -15,6 +15,7 @@ import kotlinx.coroutines.launch
 import me.goobydev.composenotes.R
 import me.goobydev.composenotes.core.presentation.components.NavDrawer
 import me.goobydev.composenotes.core.presentation.components.NavTopAppBar
+import me.goobydev.composenotes.feature_note.data.preferences.SaveRandomNoteColourPreferences
 import me.goobydev.composenotes.feature_note.presentation.util.Screen
 import me.goobydev.composenotes.feature_note.data.preferences.SaveTrashedPreference
 import me.goobydev.composenotes.feature_note.presentation.settings.components.FontSelect
@@ -40,6 +41,10 @@ fun SettingsScreen(
     val context = LocalContext.current
     val trashDataStore = SaveTrashedPreference(context)
     val currentTrashPreference = trashDataStore.getPreferences.collectAsState(initial = true)
+    val randomNoteColourDataStore = SaveRandomNoteColourPreferences(context)
+    val currentRandomNoteColourPreferences = randomNoteColourDataStore.getPreferences.collectAsState(
+        initial = false
+    )
 
     Scaffold(
         topBar = {
@@ -79,6 +84,17 @@ fun SettingsScreen(
                     }
                 },
                 checked = currentTrashPreference.value == true)
+            Spacer(modifier = Modifier.height(12.dp))
+            SettingSwitch(
+                title = "Random note colours on new note creation",
+                contentDescription = "New notes will pick a random colour at start",
+                onClick = {
+                    val reverseValue = !currentRandomNoteColourPreferences.value!!
+                    scope.launch {
+                       randomNoteColourDataStore.savePreferences(reverseValue)
+                    }
+                },
+                checked = currentRandomNoteColourPreferences.value == true)
             Spacer(modifier = Modifier.height(12.dp))
             SettingOpen(
                 title = "Note editing",

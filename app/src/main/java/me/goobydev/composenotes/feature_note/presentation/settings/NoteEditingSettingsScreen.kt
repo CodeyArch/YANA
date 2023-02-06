@@ -1,4 +1,4 @@
-package me.goobydev.composenotes.feature_settings.presentation.settings
+package me.goobydev.composenotes.feature_note.presentation.settings
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*

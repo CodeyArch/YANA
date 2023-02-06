@@ -1,7 +1,9 @@
 package me.goobydev.composenotes.feature_note.presentation.add_edit_note
 
 import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.toArgb
 import androidx.core.graphics.luminance
 import androidx.lifecycle.SavedStateHandle
@@ -11,8 +13,11 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import me.goobydev.composenotes.feature_note.data.preferences.SaveRandomNoteColourPreferences
 import me.goobydev.composenotes.feature_note.domain.model.InvalidNoteException
 import me.goobydev.composenotes.feature_note.domain.model.Note
 import me.goobydev.composenotes.feature_note.domain.use_case.NoteUseCases
@@ -26,7 +31,8 @@ this screen and pulls events from the AddEditNoteEvent Sealed Class. */
 @HiltViewModel
 class AddEditNoteViewModel @Inject constructor(
     private val noteUseCases: NoteUseCases,
-    savedStateHandle: SavedStateHandle
+    savedStateHandle: SavedStateHandle,
+    saveRandomNoteColourPreferences: SaveRandomNoteColourPreferences
 ) : ViewModel() {
     private val _noteTitle = mutableStateOf(NoteTextFieldState(hint = "Enter title..."))
     val noteTitle: State<NoteTextFieldState> = _noteTitle
@@ -34,15 +40,30 @@ class AddEditNoteViewModel @Inject constructor(
     private val _noteContent = mutableStateOf(NoteTextFieldState(hint = "Enter content..."))
     val noteContent: State<NoteTextFieldState> = _noteContent
 
-    // Picks and entirely random colour from the colour options
-    private val _noteColour = mutableStateOf(Note.mixedColoursV2.random().toArgb())
+    private var randomNotePreference by mutableStateOf(true)
+
+    init {
+        viewModelScope.launch {
+            randomNotePreference = saveRandomNoteColourPreferences.getPreferences.stateIn(viewModelScope).value!!
+        }
+
+    }
+    private val _noteColour = mutableStateOf(
+        if(randomNotePreference) {
+            // Picks and entirely random colour from the colour options
+            Note.mixedColoursV2.random().toArgb()
+        } else {
+            // Default is black due to the average user being a dark mode user.
+            Black.toArgb()
+        }
+    )
     val noteColour: State<Int> = _noteColour
 
     // Sets a default text colour on start and makes sure it contrasts well with background
     private val _textColour = mutableStateOf( if (_noteColour.value.luminance > 0.3f){
-        Black.toArgb() // Black
+        Black.toArgb()
     } else {
-        White.toArgb() // White
+        White.toArgb()
     }
     )
     val textColour: State<Int> = _textColour
@@ -54,6 +75,7 @@ class AddEditNoteViewModel @Inject constructor(
     private var job: Job? = null
 
     init {
+
         savedStateHandle.get<Int>("noteId")?.let { noteId ->
             if(noteId != -1 ) {
                 viewModelScope.launch {
