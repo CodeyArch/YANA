@@ -2,8 +2,6 @@ package me.goobydev.composenotes.feature_note.presentation.add_edit_note
 
 import android.annotation.SuppressLint
 import android.content.res.Configuration
-import androidx.compose.animation.Animatable
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -38,7 +36,6 @@ import androidx.core.graphics.luminance
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 import me.goobydev.composenotes.R
 import me.goobydev.composenotes.feature_note.data.preferences.SaveAutosavePreferences
 import me.goobydev.composenotes.feature_note.data.preferences.SaveSaveOnBackPressPreferences
@@ -46,6 +43,9 @@ import me.goobydev.composenotes.feature_note.domain.model.Note
 import me.goobydev.composenotes.feature_note.presentation.add_edit_note.components.BackPressIntercept
 import me.goobydev.composenotes.feature_note.presentation.add_edit_note.components.ExitWithoutSaving
 import me.goobydev.composenotes.feature_note.presentation.add_edit_note.components.TransparentHintTextField
+import me.goobydev.composenotes.ui.theme.GithubDarkGray
+import me.goobydev.composenotes.ui.theme.GithubGray
+import me.goobydev.composenotes.ui.theme.GithubLightGray
 
 /* The AddEditNoteScreen exists in order to allow the users to edit an existing note,
 create a new note or view a note in read only. This screen is accessed through clicking a note item
@@ -273,7 +273,7 @@ fun AddEditNoteScreen (
         val gridState = rememberLazyGridState()
         AlertDialog(
             shape = RoundedCornerShape(40.dp),
-            backgroundColor = MaterialTheme.colors.surface,
+            backgroundColor = MaterialTheme.colors.background,
             modifier = Modifier
                 .padding(10.dp, vertical = 40.dp)
                 .fillMaxWidth()
@@ -294,14 +294,14 @@ fun AddEditNoteScreen (
                         Box(
                             modifier = Modifier
                                 .aspectRatio(1f)
-                                .shadow(15.dp, CircleShape)
+                                .shadow(20.dp, CircleShape)
                                 .clip(CircleShape)
                                 .background(colour)
                                 .border(
-                                    width = 3.dp,
+                                    width = 2.dp,
                                     color = if (viewModel.noteColour.value == colourInt) {
-                                        Color.Black
-                                    } else Color.Transparent,
+                                        GithubLightGray
+                                    } else GithubGray,
                                     shape = CircleShape
                                 )
                                 .clickable {
@@ -326,7 +326,7 @@ fun AddEditNoteScreen (
         val gridState = rememberLazyGridState()
         AlertDialog(
             shape = RoundedCornerShape(40.dp),
-            backgroundColor = MaterialTheme.colors.surface,
+            backgroundColor = MaterialTheme.colors.background,
             modifier = Modifier
                 .padding(10.dp, vertical = 40.dp)
                 .fillMaxWidth()

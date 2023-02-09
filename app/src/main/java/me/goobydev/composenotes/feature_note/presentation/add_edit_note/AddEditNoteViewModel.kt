@@ -92,6 +92,7 @@ class AddEditNoteViewModel @Inject constructor(
                         _noteColour.value = note.backgroundColour
                         _textColour.value = note.textColour
                     }
+                    for (i in 0 until Note.mixedColoursV2.size) println(Note.mixedColoursV2[i])
                 }
             } else currentNoteId = System.currentTimeMillis().toInt()
            /* ID for notes can be generated automatically by the database when notes are saved,
