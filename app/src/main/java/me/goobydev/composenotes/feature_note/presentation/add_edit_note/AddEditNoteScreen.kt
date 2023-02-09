@@ -346,14 +346,14 @@ fun AddEditNoteScreen (
                         Box(
                             modifier = Modifier
                                 .aspectRatio(1f)
-                                .shadow(15.dp, CircleShape)
+                                .shadow(20.dp, CircleShape)
                                 .clip(CircleShape)
                                 .background(colour)
                                 .border(
-                                    width = 3.dp,
+                                    width = 2.dp,
                                     color = if (viewModel.textColour.value == colourInt) {
-                                        Color.Black
-                                    } else Color.Transparent,
+                                        GithubLightGray
+                                    } else GithubGray,
                                     shape = CircleShape
                                 )
                                 .clickable {
